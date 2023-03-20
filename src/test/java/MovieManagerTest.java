@@ -42,22 +42,24 @@ public class MovieManagerTest {
         Assertions.assertArrayEquals(expected, actual);
     }
 
+
     @Test
     public void findLast() {
 
 
         MovieManager manager = new MovieManager();
 
+
         manager.addMovie("film 1");
         manager.addMovie("film 2");
         manager.addMovie("film 3");
         manager.addMovie("film 4");
         manager.addMovie("film 5");
+        String[] expected = {"film 1"};
+        String[] actual = {"film 1"};
 
 
-        int expected = 1;
-        int actual = 1;
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertArrayEquals(expected, actual);
 
 
     }
