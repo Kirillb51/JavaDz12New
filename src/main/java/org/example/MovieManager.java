@@ -4,8 +4,9 @@ public class MovieManager {
     private String[] movies = new String[0];
     private int limit;
 
+
     public MovieManager() {
-        this.limit = 4;
+        this.limit = 9;
 
     }
 
