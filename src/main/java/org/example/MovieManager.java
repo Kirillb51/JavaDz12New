@@ -1,64 +1,46 @@
 package org.example;
 
+
+
+
 public class MovieManager {
+
+    private int countMovie = 10;
     private MovieRepo[] movies = new MovieRepo[0];
-    private MovieRepo[] moviesReverse = new MovieRepo[0];
-    private int countMovies = 10;
+
+    public MovieManager(int countMovie) {
+        this.countMovie = countMovie;
+    }
 
     public MovieManager() {
     }
 
-    public MovieManager(int countMovies) {
-        this.countMovies = countMovies;
-    }
-
-    public MovieRepo[] getMovies() {
-        return movies;
-    }
-
-    public void setMovies(MovieRepo[] movies) {
-        this.movies = movies;
-    }
-
-    public MovieRepo[] getMoviesReverse() {
-        return moviesReverse;
-    }
-
-    public void setMoviesReverse(MovieRepo[] moviesReverse) {
-        this.moviesReverse = moviesReverse;
-    }
-
-    public int getCountMovies() {
-        return countMovies;
-    }
-
-    public void setCountMovies(int countMovies) {
-        this.countMovies = countMovies;
-    }
-
-
     public void add(MovieRepo movie) {
-        MovieRepo[] tmp = new MovieRepo[movies.length + 1];
-        for (int i = 0; i < movies.length; i++) {
-            tmp[i] = movies[i];
-        }
-        tmp[movies.length] = movie;
+        int length = movies.length + 1;
+        MovieRepo[] tmp = new MovieRepo[length];
+        System.arraycopy(movies, 0, tmp, 0, movies.length);
+        int lastIndex = tmp.length - 1;
+        tmp[lastIndex] = movie;
         movies = tmp;
     }
 
+    public MovieRepo[] findLastTen() {
 
-    public void findAll() {
-        getMovies();
+        int resultLength = movies.length;
+        if (resultLength >= countMovie) {
+            resultLength = countMovie;
+        } else {
+            resultLength = movies.length;
+        }
+        MovieRepo[] result = new MovieRepo[resultLength];
+        for (int i = 0; i < result.length; i++) {
+            int index = movies.length - i - 1;
+            result[i] = movies[index];
+        }
+        return result;
     }
 
-
-    public void findLast() {
-        if (countMovies > movies.length) {
-        }
-        MovieRepo[] tmp = new MovieRepo[countMovies];
-        for (int i = 0, j = movies.length - 1; i < countMovies; i++, j--) {
-            tmp[i] = movies[j];
-        }
-        moviesReverse = tmp;
+    public MovieRepo[] findAll() {
+        return movies;
     }
 }
